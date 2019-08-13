@@ -1,10 +1,11 @@
 export class Game {
-  constructor (snake, interval = 100, growTimer) {
+  constructor (snake, interval = 100, growTimer, spriteSize) {
     this.interval = interval
     this.snake = snake
     this.timeToGrow = performance.now() + this.interval
     this.timeToMove = performance.now() + this.snake.speed
     this.growTimer = growTimer
+    this.spriteSize = spriteSize
   }
 
   update () {
@@ -36,14 +37,14 @@ export class Game {
 
   _checkLost () {
     const top = 0
-    const right = window.innerWidth / 10
-    const bottom = window.innerHeight / 10
+    const right = window.innerWidth / this.spriteSize
+    const bottom = window.innerHeight / this.spriteSize
     const left = 0
     const head = this.snake.body[0]
 
     console.log({ top, right, bottom, left, x: head.x, y: head.y })
 
-    if (head.y < top || head.x > right || head.y > bottom || head.x < left) this._stop()
+    if (head.y < top || head.x >= right || head.y >= bottom || head.x < left) this._stop()
 
     this.snake.body.slice(1).reduce((head, body) => {
       if (head.x === body.x && head.y === body.y) this._stop()
