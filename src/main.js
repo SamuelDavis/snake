@@ -12,8 +12,8 @@ export default function () {
   let timeToGrow = performance.now() + interval
   let timeToMove = performance.now() + snake.speed
 
-  const growTimer = document.createElement('div')
-  growTimer.setAttribute('style', 'color: white;')
+  const growTimer = document.createElement('span')
+  growTimer.setAttribute('style', 'color:white;z-index:99;')
   document.body.appendChild(growTimer)
 
   const gameLoop = setInterval(() => {
