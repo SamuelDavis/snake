@@ -1,3 +1,28 @@
-html {
+* {
     background-color: black;
+    color: white;
+}
+
+body {
+    background-color: transparent;
+}
+
+i {
+    z-index: -1;
+}
+
+#grow-timer {
+    float: left
+}
+
+#github-anchor {
+    float: right
+}
+
+#github-anchor:visited {
+    color: white;
+}
+
+#controls {
+    margin-left: 25vw;
 }

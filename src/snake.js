@@ -1,15 +1,19 @@
 import { Sprite } from './sprite.js'
 
 export class Snake {
-  constructor (sprite, speed = 200) {
+  constructor (sprite, speed = 200, initialSize = 1) {
     this._sprite = sprite
     this.body = []
     this.facing = 'd'
     this.speed = speed
+    while (initialSize > 0) {
+      this.grow()
+      initialSize--
+    }
   }
 
   grow () {
-    const {x, y} = this.body[0] || {x: 0, y: 0}
+    const { x, y } = this.body[0] || { x: 0, y: 0 }
     this.body.push(new Sprite(this._sprite).move(x, y))
     return this
   }
