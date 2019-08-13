@@ -1,1 +1,1 @@
-[Demo](http://snake.sdavis.space/)
+[Demo](https://snake.sdavis.space/)
