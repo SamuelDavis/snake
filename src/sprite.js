@@ -1,16 +1,18 @@
-export class Sprite {
-  constructor (styles = {}, { x: x = 0, y: y = 0 } = {}) {
-    this._styles = styles
-    this.el = document.createElement('i')
+export default class Sprite {
+  constructor (styles, { x = 0, y = 0 } = {}) {
+    this.styles = styles
     this.x = x
     this.y = y
-    this.render()
+    this.el = document.createElement('i')
   }
 
   get style () {
-    this._styles.left = `${this.x * 10}px`
-    this._styles.top = `${this.y * 10}px`
-    return Object.keys(this._styles).reduce((acc, property) => `${acc}${property}:${this._styles[property]};`, '')
+    this.styles = {
+      ...this.styles,
+      left: `${this.x * 10}px`,
+      top: `${this.y * 10}px`
+    }
+    return Object.keys(this.styles).reduce((acc, property) => `${acc}${property}:${this.styles[property]};`, '')
   }
 
   render () {
@@ -19,7 +21,7 @@ export class Sprite {
     return this
   }
 
-  move (x = 0, y = 0) {
+  moveTo (x = 0, y = 0) {
     this.x = x
     this.y = y
     return this.render()

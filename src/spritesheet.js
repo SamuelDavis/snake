@@ -1,4 +1,4 @@
-export class SpriteSheet {
+export default class SpriteSheet {
   constructor (url, spriteSize, spriteMap) {
     for (let key in spriteMap) {
       if (!spriteMap.hasOwnProperty(key)) continue

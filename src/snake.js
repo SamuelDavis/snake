@@ -1,40 +1,40 @@
-import { Sprite } from './sprite.js'
+import { DIRECTIONS } from './util.js'
+import Sprite from './sprite.js'
 
-export class Snake {
-  constructor (sprite, speed = 200) {
-    this._sprite = sprite
-    this.body = []
-    this.facing = 'd'
+export default class Snake {
+  constructor (sprite, speed = 100) {
+    this.sprite = sprite
     this.speed = speed
-    this.grow(0, 0)
+    this.facing = DIRECTIONS.RIGHT
+    this.body = []
+  }
+
+  static getDelta (facing) {
+    return { w: [0, -1], a: [-1, 0], s: [0, 1], d: [1, 0] }[facing] || [0, 0]
+  }
+
+  turn (facing) {
+    const directionList = Object.values(DIRECTIONS)
+    const thisIndex = directionList.indexOf(this.facing)
+    const facingIndex = directionList.indexOf(facing)
+    // stop snake turning back on itself
+    if (thisIndex + 2 === facingIndex || facingIndex + 2 === thisIndex) {
+      return
+    }
+    this.facing = facing
+    return this
   }
 
   grow (x = -1, y = -1) {
-    this.body.push(new Sprite(this._sprite, { x, y }))
+    this.body.push(new Sprite(this.sprite, { x, y }))
     return this
   }
 
-  move (x, y) {
+  moveBy (deltaX, deltaY) {
     const front = this.body[0]
     const end = this.body.pop()
-    end.move(x + front.x, y + front.y)
+    end.moveTo(deltaX + front.x, deltaY + front.y)
     this.body.unshift(end)
-    if (y < 0) {
-      this.facing = 'w'
-    }
-    if (x > 0) {
-      this.facing = 'd'
-    }
-    if (y > 0) {
-      this.facing = 's'
-    }
-    if (x < 0) {
-      this.facing = 'a'
-    }
     return this
-  }
-
-  getDelta (facing) {
-    return { w: [0, -1], a: [-1, 0], s: [0, 1], d: [1, 0] }[facing] || [0, 0]
   }
 }
