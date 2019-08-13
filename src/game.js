@@ -1,6 +1,7 @@
 export class Game {
-  constructor (snake, interval = 100, growTimer, spriteSize) {
+  constructor (snake, growTimer, spriteSize, interval = 50, intervalMultiplier = 1.1) {
     this.interval = interval
+    this.intervalMultiplier = intervalMultiplier
     this.snake = snake
     this.timeToGrow = performance.now() + this.interval
     this.timeToMove = performance.now() + this.snake.speed
@@ -53,7 +54,7 @@ export class Game {
   }
 
   _grow () {
-    this.interval *= 1.10
+    this.interval *= this.intervalMultiplier
     this.timeToGrow = performance.now() + this.interval
     this.snake.grow()
   }

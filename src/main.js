@@ -9,7 +9,7 @@ export default function () {
   })
   const snake = new Snake(spriteSheet.at, 100)
   const growTimer = document.getElementById('grow-timer')
-  const game = new Game(snake, 100, growTimer, spriteSize)
+  const game = new Game(snake, growTimer, spriteSize)
 
   document.addEventListener('keydown', game.keyHandler.bind(game))
   window.requestAnimationFrame(game.update.bind(game))
