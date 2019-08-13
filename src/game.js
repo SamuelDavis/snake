@@ -17,12 +17,11 @@ export default class Game {
       left: 0
     }
     const directions = Object.values(DIRECTIONS)
-    this.snake
-      .turn(directions[Math.floor(Math.random() * directions.length)])
-      .grow(
-        Math.floor(Math.random() * this.containerBounds.right),
-        Math.floor(Math.random() * this.containerBounds.bottom)
-      )
+    this.snake.turn(directions[Math.floor(Math.random() * directions.length)])
+    this.snake.grow(
+      Math.floor(Math.random() * this.containerBounds.right),
+      Math.floor(Math.random() * this.containerBounds.bottom)
+    )
   }
 
   _lose () {
