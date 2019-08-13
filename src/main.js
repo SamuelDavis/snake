@@ -6,7 +6,7 @@ export default function () {
   const spriteSheet = new SpriteSheet('http://rogueliketutorials.com/images/arial10x10.png', 10, {
     at: [0, 1]
   })
-  const snake = new Snake(spriteSheet.at)
+  const snake = new Snake(spriteSheet.at, 100)
   const growTimer = document.getElementById('grow-timer')
   const game = new Game(snake, 100, growTimer)
 

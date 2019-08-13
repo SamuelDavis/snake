@@ -29,14 +29,26 @@ export class Game {
     }
   }
 
+  _stop () {
+    if (confirm('Game over!')) document.location.reload()
+    throw new Error('game over')
+  }
+
   _checkLost () {
+    const top = 0
+    const right = window.innerWidth / 10
+    const bottom = window.innerHeight / 10
+    const left = 0
+    const head = this.snake.body[0]
+
+    console.log({ top, right, bottom, left, x: head.x, y: head.y })
+
+    if (head.y < top || head.x > right || head.y > bottom || head.x < left) this._stop()
+
     this.snake.body.slice(1).reduce((head, body) => {
-      if (head.x === body.x && head.y === body.y) {
-        if (confirm('Game over!')) document.location.reload()
-        throw new Error('game over')
-      }
+      if (head.x === body.x && head.y === body.y) this._stop()
       return head
-    }, this.snake.body[0])
+    }, head)
   }
 
   _grow () {

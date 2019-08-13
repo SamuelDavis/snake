@@ -1,7 +1,7 @@
 export class Sprite {
   constructor (styles = {}, { x: x = 0, y: y = 0 } = {}) {
     this._styles = styles
-    this._el = document.createElement('i')
+    this.el = document.createElement('i')
     this.x = x
     this.y = y
     this.render()
@@ -14,8 +14,8 @@ export class Sprite {
   }
 
   render () {
-    this._el.setAttribute('style', this.style)
-    if (this._el.parentNode === null) document.body.appendChild(this._el)
+    this.el.setAttribute('style', this.style)
+    if (this.el.parentNode === null) document.body.appendChild(this.el)
     return this
   }
 
